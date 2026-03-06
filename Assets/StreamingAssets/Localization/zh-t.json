@@ -1,0 +1,34 @@
+{
+  "entries": [
+    { "key": "select_save",     "value": "選擇存檔"   },
+    { "key": "slot_empty",      "value": "空"         },
+    { "key": "back",            "value": "返回"       },
+    { "key": "load",            "value": "載入"       },
+    { "key": "delete",          "value": "刪除"       },
+    { "key": "cancel",          "value": "取消"       },
+    { "key": "list_account",    "value": "帳號列表"   },
+    { "key": "create_account",  "value": "建立帳號"   },
+    { "key": "login_account",   "value": "登入"       },
+    { "key": "username",        "value": "使用者名稱" },
+    { "key": "password",        "value": "密碼"       },
+    { "key": "confirm",         "value": "確認"       },
+    { "key": "logout",          "value": "登出"       },
+    { "key": "play",            "value": "開始遊戲"   },
+    { "key": "open_inventory",  "value": "開啟背包"   },
+    { "key": "press_e",         "value": "按 E"       },
+    { "key": "coin_label",           "value": "金幣"       },
+    { "key": "err_username_empty",    "value": "用戶名不能為空。"    },
+    { "key": "err_password_empty",    "value": "密碼不能為空。"      },
+    { "key": "err_password_short",    "value": "密碼至少 8 個字元。"  },
+    { "key": "err_username_exists",   "value": "用戶名已存在。"      },
+    { "key": "err_wrong_credentials", "value": "用戶名或密碼錯誤。"  },
+    { "key": "err_save_corrupted",    "value": "存檔檔案損毀。"      },
+    { "key": "err_save_no_user",      "value": "無活躍用戶。"        },
+    { "key": "err_save_failed",       "value": "儲存失敗。"          },
+    { "key": "err_load_failed",       "value": "載入失敗。"          },
+    { "key": "err_no_space",          "value": "磁碟空間不足。"      },
+    { "key": "slot_deleted",          "value": "已刪除此存檔。"      },
+    { "key": "empty",          "value": ""       }
+
+  ]
+}

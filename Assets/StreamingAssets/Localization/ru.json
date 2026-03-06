@@ -1,0 +1,34 @@
+{
+  "entries": [
+    { "key": "select_save",     "value": "Выбор сохранения" },
+    { "key": "slot_empty",      "value": "Пусто"            },
+    { "key": "back",            "value": "Назад"            },
+    { "key": "load",            "value": "Загрузить"        },
+    { "key": "delete",          "value": "Удалить"          },
+    { "key": "cancel",          "value": "Отмена"           },
+    { "key": "list_account",    "value": "Список аккаунтов" },
+    { "key": "create_account",  "value": "Создать аккаунт"  },
+    { "key": "login_account",   "value": "Войти"            },
+    { "key": "username",        "value": "Имя пользователя" },
+    { "key": "password",        "value": "Пароль"           },
+    { "key": "confirm",         "value": "Подтвердить"      },
+    { "key": "logout",          "value": "Выйти"            },
+    { "key": "play",            "value": "Играть"           },
+    { "key": "open_inventory",  "value": "Открыть инвентарь"},
+    { "key": "press_e",         "value": "Нажмите E"        },
+    { "key": "coin_label",           "value": "Монеты"                          },
+    { "key": "err_username_empty",    "value": "Имя пользователя не может быть пустым." },
+    { "key": "err_password_empty",    "value": "Пароль не может быть пустым."         },
+    { "key": "err_password_short",    "value": "Пароль должен содержать не менее 8 символов." },
+    { "key": "err_username_exists",   "value": "Имя пользователя уже существует."    },
+    { "key": "err_wrong_credentials", "value": "Неверное имя или пароль."           },
+    { "key": "err_save_corrupted",    "value": "Файл сохранения поврежден."              },
+    { "key": "err_save_no_user",      "value": "Нет активного пользователя."               },
+    { "key": "err_save_failed",       "value": "Ошибка сохранения."                      },
+    { "key": "err_load_failed",       "value": "Ошибка загрузки."                       },
+    { "key": "err_no_space",          "value": "Недостаточно места на диске."             },
+    { "key": "slot_deleted",          "value": "Слот удален."                           },
+    { "key": "empty",          "value": ""       }
+
+  ]
+}

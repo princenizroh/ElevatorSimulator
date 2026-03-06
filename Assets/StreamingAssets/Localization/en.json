@@ -1,0 +1,34 @@
+{
+  "entries": [
+    { "key": "select_save",     "value": "Select Save"     },
+    { "key": "slot_empty",      "value": "Empty"           },
+    { "key": "back",            "value": "Back"            },
+    { "key": "load",            "value": "Load"            },
+    { "key": "delete",          "value": "Delete"          },
+    { "key": "cancel",          "value": "Cancel"          },
+    { "key": "list_account",    "value": "Account List"    },
+    { "key": "create_account",  "value": "Create Account"  },
+    { "key": "login_account",   "value": "Login"           },
+    { "key": "username",        "value": "Username"        },
+    { "key": "password",        "value": "Password"        },
+    { "key": "confirm",         "value": "Confirm"         },
+    { "key": "logout",          "value": "Logout"          },
+    { "key": "play",            "value": "Play"            },
+    { "key": "open_inventory",  "value": "Open Inventory"  },
+    { "key": "press_e",         "value": "Press E"          },
+    { "key": "coin_label",           "value": "Coin"                              },
+    { "key": "err_username_empty",    "value": "Username cannot be empty."         },
+    { "key": "err_password_empty",    "value": "Password cannot be empty."         },
+    { "key": "err_password_short",    "value": "Password must be at least 8 characters." },
+    { "key": "err_username_exists",   "value": "Username already exists."           },
+    { "key": "err_wrong_credentials", "value": "Wrong username or password."        },
+    { "key": "err_save_corrupted",    "value": "Save file is corrupted."            },
+    { "key": "err_save_no_user",      "value": "No active user."                    },
+    { "key": "err_save_failed",       "value": "Save failed."                       },
+    { "key": "err_load_failed",       "value": "Load failed."                       },
+    { "key": "err_no_space",          "value": "Not enough disk space."             },
+    { "key": "slot_deleted",          "value": "Slot deleted."                      },
+    { "key": "empty",          "value": ""       }
+
+  ]
+}
