@@ -1,28 +1,24 @@
-<h1 align="center">🎮 Project Name</h1>
+<h1 align="center">🛗 Elevator Simulator</h1>
 
 <p align="center">
-  <b>Short one-line tagline — e.g. "A fast-paced 2D roguelike with procedural dungeons."</b>
+  <b>A Unity 2D simulation of a multi-elevator dispatch system with SCAN algorithm, door animation, and player carry mechanic.</b>
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Engine-Unity%202023.3-blue?logo=unity" alt="Engine"/>
+  <img src="https://img.shields.io/badge/Engine-Unity%206-blue?logo=unity" alt="Engine"/>
   <img src="https://img.shields.io/badge/Language-C%23-239120?logo=csharp" alt="Language"/>
-  <img src="https://img.shields.io/badge/Platform-Windows%20%7C%20Linux-lightgrey" alt="Platform"/>
+  <img src="https://img.shields.io/badge/Platform-Windows-lightgrey" alt="Platform"/>
   <img src="https://img.shields.io/badge/Status-In%20Development-yellow" alt="Status"/>
-  <img src="https://img.shields.io/badge/License-MIT-green" alt="License"/>
 </p>
 
 ---
 
 ## 📖 Description
 
-Provide a detailed overview of the game:
-
-- **Genre:** e.g. 2D Platformer / 3D RPG / Top-down Shooter
-- **Theme:** e.g. Sci-fi, Fantasy, Horror
-- **Gameplay:** Describe core gameplay loop — what does the player do?
-- **Story (optional):** Brief synopsis without spoilers
-- **Target Audience:** Casual / Hardcore / All ages
+- **Genre:** 2D Simulation / Puzzle
+- **Theme:** Modern building / Urban
+- **Gameplay:** Player navigates a multi-floor building using 3 elevators. Press hall call buttons on each floor to summon the nearest elevator, then use car call buttons inside the elevator to select a destination floor.
+- **Target Audience:** Assignment / Academic
 
 ---
 
@@ -30,19 +26,138 @@ Provide a detailed overview of the game:
 
 | Category        | Tool / Technology          |
 | --------------- | -------------------------- |
-| Game Engine     | e.g. Unity 2022.3 / Godot 4.x |
-| Language        | e.g. C# / GDScript / C++  |
-| IDE / Editor    | e.g. Visual Studio / Rider / VS Code |
-| Art Tool        | e.g. Aseprite / Blender / Photoshop |
-| Audio Tool      | e.g. Audacity / FMOD / Wwise |
-| UI Framework    | e.g. Unity UI Toolkit / ImGui |
-| Networking      | e.g. Mirror / Netcode / Photon |
-| CI/CD           | e.g. GitHub Actions / Unity Cloud Build |
-| Version Control | e.g. Git + Git LFS / GitHub |
+| Game Engine     | Unity 6 (2D URP)           |
+| Language        | C#                         |
+| IDE / Editor    | Visual Studio Code         |
+| Art Tool        | Aseprite                   |
+| UI Framework    | Unity UI (Canvas + TextMeshPro) |
+| Input System    | Unity Input System (PlayerInputActions) |
+| Version Control | Git                        |
 
 ---
 
-## 📁 Project Structure
+## ✅ Requirements Fulfillment
+
+| Requirement | Status | Implementation |
+|---|---|---|
+| 3 elevators | ✅ | 3 `ElevatorController` GameObjects |
+| Minimum 4 floors | ✅ | Configured via `ElevatorData.FloorNames` (G, 1, 2, 3) |
+| Floor call buttons | ✅ | `FloorCallButton.cs` per floor |
+| One elevator responds per request | ✅ | `ElevatorManager` dispatches single best elevator |
+| Nearest available elevator responds | ✅ | SCAN algorithm scoring in `ElevatorManager` |
+| Logical direction & request queue | ✅ | SCAN with `SortedSet` up/down queues per elevator |
+| Elevators don't all respond together | ✅ | Only highest-scored elevator assigned |
+| Each elevator has own queue | ✅ | Independent `SortedSet` per `ElevatorController` |
+| Smooth movement | ✅ | `Vector3.Lerp` between floors |
+| Display current floor | ✅ | `ElevatorDisplay.cs` per elevator |
+
+---
+
+## 🗂️ Elevator System Scripts
+
+### `Data/ElevatorData.cs`
+ScriptableObject config shared across all elevators.
+
+| Field | Description |
+|---|---|
+| `MoveSpeed` | Travel speed (units/sec) |
+| `DoorOpenDuration` | How long doors stay open (sec) |
+| `FloorHeight` | World-space distance between floors |
+| `FloorNames` | Display names per floor (e.g. `["G","1","2","3"]`) |
+
+**Create:** `Assets → Create → KProject → Elevator System → Elevator Data`
+
+---
+
+### `Core/ElevatorController.cs`
+Per-elevator movement, queue management, and door triggering.
+
+- `_data` — `ElevatorData` ScriptableObject
+- `_door` — `ElevatorDoor` reference (auto-detected via `GetComponentInChildren`)
+- `_groundFloorWorldY` — Y world position of Ground floor
+- **Algorithm:** SCAN — uses two `SortedSet<int>` (up/down queues), services in current direction first
+
+---
+
+### `Core/ElevatorManager.cs`
+Singleton dispatcher. Picks best elevator per hall call using SCAN scoring.
+
+- Idle + closest = lowest score (best)
+- Wrong direction = +100 penalty
+- Inspector: `_elevators` — list of all `ElevatorController` instances
+
+---
+
+### `Core/ElevatorDoor.cs`
+Door animation, player detection, and player carry during travel.  
+Attach to `Elevator_A/B/C` alongside `ElevatorController`.
+
+- Requires Animator with states: `Door_Idle`, `Door_Open`, `Door_Close`
+- `_carCallPanel` — shown when player is locked inside, hidden otherwise
+- **Player carry:** `FixedUpdate` sets `playerRb.position = elevatorPos + lockOffset` (no lag, no mass effect)
+
+---
+
+### `Core/ElevatorInteriorZone.cs`
+Trigger forwarder on `InteriorZone` child GameObject.  
+Forwards player enter/exit to parent `ElevatorDoor`.
+
+---
+
+### `Core/FloorCallButton.cs`
+Hall call button on each floor (outside elevator).  
+Calls `ElevatorManager` → dispatches nearest elevator.  
+Turns yellow when active, white when elevator arrives.
+
+---
+
+### `Core/ElevatorCarCallButton.cs`
+Car call button inside elevator panel.  
+Directly calls `ElevatorController.RequestFloor()` — only works when player is locked inside.  
+`ElevatorController` and `ElevatorDoor` auto-detected via `GetComponentInParent`.
+
+---
+
+### `UI/ElevatorDisplay.cs`
+Shows floor name and direction (`UP` / `DN` / `OPEN` / `-`) for one elevator.
+
+---
+
+## 🏗️ Scene Hierarchy (Per Elevator)
+
+```
+Elevator_A                  ← ElevatorController, ElevatorDoor
+  ├── DoorSprite            ← Animator, SpriteRenderer
+  ├── InteriorZone          ← ElevatorInteriorZone, Collider2D (Is Trigger ✓)
+  └── Canvas (World Space)
+        ├── CarCallPanel    ← assigned to ElevatorDoor._carCallPanel
+        │     ├── Button_G  ← ElevatorCarCallButton (floorIndex = 0)
+        │     ├── Button_1  ← ElevatorCarCallButton (floorIndex = 1)
+        │     ├── Button_2  ← ElevatorCarCallButton (floorIndex = 2)
+        │     └── Button_3  ← ElevatorCarCallButton (floorIndex = 3)
+        └── DirectionText   ← ElevatorDisplay
+```
+
+---
+
+## 🔘 Floor Call Setup (Per Floor)
+
+```
+Floor_G_UI
+  └── CallButton   ← FloorCallButton (floorIndex = 0)
+
+Floor_1_UI
+  └── CallButton   ← FloorCallButton (floorIndex = 1)
+```
+
+---
+
+## 🧍 Player Requirements
+
+- Tag: `Player`
+- `Rigidbody2D` — Dynamic, freeze Z rotation
+- `PlayerController` — from `Platformer.Controller` namespace
+- Collider must overlap `InteriorZone` trigger to be detected
 
 ### Assets — By Type with Grouped Utilities
 
@@ -175,16 +290,24 @@ Refactor: extract health system into reusable component
 
 ## 🚀 Getting Started
 
-### Installation
+### Setup
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/username/project-name.git
+git clone https://github.com/username/elevator-simulator.git
 
-# 2. Navigate to the project folder
-cd project-name
-
+# 2. Open with Unity Hub → Add project from disk
+# 3. Open Scenes/Gameplay.unity
+# 4. Press Play
 ```
+
+### First Time Scene Setup
+
+1. Create `ElevatorData` ScriptableObject → assign to all `ElevatorController`
+2. Set `_groundFloorWorldY` on each `ElevatorController` to match Ground floor Y in scene
+3. Add all 3 `ElevatorController` references to `ElevatorManager._elevators`
+4. Attach `ElevatorInteriorZone` to each `InteriorZone` child (ensure Collider2D Is Trigger ✓)
+5. Assign `CarCallPanel` to `ElevatorDoor._carCallPanel` on each elevator
 
 ---
 
@@ -195,5 +318,5 @@ This project is licensed under the **MIT License** — see the [LICENSE](LICENSE
 ---
 
 <p align="center">
-  Made with ❤️ and ☕ by <a href="https://github.com/username">Your Name</a>
+  Made with ❤️ and ☕ — Elevator Simulator Assignment
 </p>
