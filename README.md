@@ -113,12 +113,8 @@ Elevator_A                  ← ElevatorController, ElevatorDoor
 │   │   └── ElevatorData.cs          #   ScriptableObject config
 │   └── 📂 UI/
 │       └── ElevatorDisplay.cs       #   Floor name + direction display
-├── 📂 PlayerSystem/                 # Player movement & input
-├── 📂 CoinSystem/                   # Coin collection system
-├── 📂 InventorySystem/              # Inventory management
-├── 📂 SaveSystem/                   # Save & load persistence
-├── 📂 LocalizationSystem/           # Multi-language support
-└── 📂 UserAccountSystem/            # User account handling
+└── 📂 PlayerSystem/                 # Player movement & input
+
 ```
 
 ---
