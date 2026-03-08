@@ -1,0 +1,45 @@
+Pixel Elevator Asset Pack (32x48 // 32x16, Animated)
+
+Thank you for choosing this asset pack! I hope it helps bring your game idea to life.
+
+=======================================================================================
+
+Contents
+
+Elevator (32x48 px) with animated doors (open/close)
+
+Floor Indicator (32x16) in both modern and retro styles, separate asset and customizable for multiple floors
+
+=======================================================================================
+
+File formats:
+
+aseprite (fully editable, layers and animations)
+
+png (ready-to-use sprite sheets)
+
+=======================================================================================
+
+Usage
+
+Ideal for 2D platformers, sidescrollers, or any game with vertical levels
+
+Can be used in commercial and non-commercial projects
+
+Attribution is not required but always appreciated
+
+=======================================================================================
+
+
+Credits
+If you want to give credit, mention Motionkontor
+Follow on Instagram: @motionkontor
+
+
+License
+=======================================================================================
+Free to use in private and commercial projects
+
+Redistribution or reselling of the files as assets is not allowed
+
+Thank you and have fun creating!
