@@ -95,6 +95,32 @@ Elevator_A                  ← ElevatorController, ElevatorDoor
 └── 📄 README.md
 ```
 
+### Script Structure
+
+```
+📂 Scripts/
+├── 📂 _Core/                        # Shared patterns & utilities
+│   └── Singleton.cs                 #   Generic Singleton<T> base class
+├── 📂 ElevatorSystem/
+│   ├── 📂 Core/
+│   │   ├── ElevatorController.cs    #   Per-elevator movement + queue (SCAN)
+│   │   ├── ElevatorManager.cs       #   Singleton dispatcher (hall call)
+│   │   ├── ElevatorDoor.cs          #   Door animation + player carry
+│   │   ├── ElevatorInteriorZone.cs  #   Trigger forwarder (InteriorZone child)
+│   │   ├── FloorCallButton.cs       #   Hall call button (outside elevator)
+│   │   └── ElevatorCarCallButton.cs #   Car call button (inside elevator panel)
+│   ├── 📂 Data/
+│   │   └── ElevatorData.cs          #   ScriptableObject config
+│   └── 📂 UI/
+│       └── ElevatorDisplay.cs       #   Floor name + direction display
+├── 📂 PlayerSystem/                 # Player movement & input
+├── 📂 CoinSystem/                   # Coin collection system
+├── 📂 InventorySystem/              # Inventory management
+├── 📂 SaveSystem/                   # Save & load persistence
+├── 📂 LocalizationSystem/           # Multi-language support
+└── 📂 UserAccountSystem/            # User account handling
+```
+
 ---
 ## 📏 Coding Standards
 
