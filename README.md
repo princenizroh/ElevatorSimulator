@@ -34,17 +34,14 @@
 | Input System    | Unity Input System (PlayerInputActions) |
 | Version Control | Git                        |
 
----
 
-
----
 
 ## 🏗️ Scene Hierarchy (Per Elevator)
 
 ```
 Elevator_A                  ← ElevatorController, ElevatorDoor
   ├── DoorSprite            ← Animator, SpriteRenderer
-  ├── InteriorZone          ← ElevatorInteriorZone, Collider2D (Is Trigger ✓)
+      └── InteriorZone          ← ElevatorInteriorZone, Collider2D 
   └── Canvas (World Space)
         ├── CarCallPanel    ← assigned to ElevatorDoor._carCallPanel
         │     ├── Button_G  ← ElevatorCarCallButton (floorIndex = 0)
@@ -54,26 +51,7 @@ Elevator_A                  ← ElevatorController, ElevatorDoor
         └── DirectionText   ← ElevatorDisplay
 ```
 
----
 
-## 🔘 Floor Call Setup (Per Floor)
-
-```
-Floor_G_UI
-  └── CallButton   ← FloorCallButton (floorIndex = 0)
-
-Floor_1_UI
-  └── CallButton   ← FloorCallButton (floorIndex = 1)
-```
-
----
-
-## 🧍 Player Requirements
-
-- Tag: `Player`
-- `Rigidbody2D` — Dynamic, freeze Z rotation
-- `PlayerController` — from `Platformer.Controller` namespace
-- Collider must overlap `InteriorZone` trigger to be detected
 
 ### Assets — By Type with Grouped Utilities
 
