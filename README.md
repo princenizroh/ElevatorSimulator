@@ -36,21 +36,6 @@
 
 ---
 
-## ✅ Requirements Fulfillment
-
-| Requirement | Status | Implementation |
-|---|---|---|
-| 3 elevators | ✅ | 3 `ElevatorController` GameObjects |
-| Minimum 4 floors | ✅ | Configured via `ElevatorData.FloorNames` (G, 1, 2, 3) |
-| Floor call buttons | ✅ | `FloorCallButton.cs` per floor |
-| One elevator responds per request | ✅ | `ElevatorManager` dispatches single best elevator |
-| Nearest available elevator responds | ✅ | SCAN algorithm scoring in `ElevatorManager` |
-| Logical direction & request queue | ✅ | SCAN with `SortedSet` up/down queues per elevator |
-| Elevators don't all respond together | ✅ | Only highest-scored elevator assigned |
-| Each elevator has own queue | ✅ | Independent `SortedSet` per `ElevatorController` |
-| Smooth movement | ✅ | `Vector3.Lerp` between floors |
-| Display current floor | ✅ | `ElevatorDisplay.cs` per elevator |
-
 ---
 
 ## 🗂️ Elevator System Scripts
